@@ -1,9 +1,11 @@
 package com.example.welcome.listviewimages;
 
+import java.io.Serializable;
+
 /**
  * Created by welcome on 25-02-2016.
  */
-public class Badge {
+public class Badge implements Serializable{
     private String bronze;
     private String silver;
     private String gold;

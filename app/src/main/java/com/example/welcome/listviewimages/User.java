@@ -2,16 +2,23 @@ package com.example.welcome.listviewimages;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by welcome on 25-02-2016.
  */
-public class User {//Variables that are in our json
+public class User implements Serializable{//Variables that are in our json
     private String profile_image;
     private String display_name;
     private int age;
     private Badge badge_counts;
     private String location;
     private String reputation;
+    private long creation_date;
+    private long last_access_date;
+    private String website_url;
+
+
 
     public String getProfile_image() {
         return profile_image;
@@ -59,5 +66,29 @@ public class User {//Variables that are in our json
 
     public void setBadge_counts(Badge badge_counts) {
         this.badge_counts = badge_counts;
+    }
+
+    public long getCreation_date() {
+        return creation_date;
+    }
+
+    public void setCreation_date(long creation_date) {
+        this.creation_date = creation_date;
+    }
+
+    public long getLast_access_date() {
+        return last_access_date;
+    }
+
+    public void setLast_access_date(long last_access_date) {
+        this.last_access_date = last_access_date;
+    }
+
+    public String getWebsite_url() {
+        return website_url;
+    }
+
+    public void setWebsite_url(String website_url) {
+        this.website_url = website_url;
     }
 }

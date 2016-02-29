@@ -21,7 +21,9 @@ public interface UserAPI {
 
 
     @GET("/2.2/users?")
-    void getUser(@Query("page") int pageSize,
+    void getUser(
+            @Query("currentpage") int currentpage,
+            @Query("page") int pageSize,
                  @Query("order") String order,
                  @Query("sort") String sort,
                  @Query("site") String site,

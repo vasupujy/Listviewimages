@@ -1,7 +1,9 @@
 package com.example.welcome.listviewimages;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,22 +11,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.http.Field;
 
 public class MainActivity extends AppCompatActivity {
     public static final String ROOT_URL = "https://api.stackexchange.com";
-
+int currentpage=1;
     //Strings to bind with intent will be used to send data to other activity
     private ListView listView;
+    boolean webserviceflag=false;
     private CustomAdapter adapter;
     //List of type userList this list will store type User which is our data model
     private List<User> userList;
@@ -35,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.list);
 
+        adapter = new CustomAdapter(this);
+
+        listView.setAdapter(adapter);
         //Calling the method that will fetch data
         getBooks();
 
@@ -66,22 +79,24 @@ public class MainActivity extends AppCompatActivity {
         UserAPI api = adapter.create(UserAPI.class);
 
         //Defining the method
-
-        api.getUser(20, "desc", "reputation", "stackoverflow", new Callback<UserResponse>() {
+        webserviceflag=true;
+        api.getUser(currentpage,20, "desc", "reputation", "stackoverflow", new Callback<UserResponse>() {
             @Override
             public void success(UserResponse userResponse, Response response) {
                 loading.dismiss();
-
+                webserviceflag=false;
                 //Storing the data in our list
                 userList = userResponse.getItems();
 
                 //Calling a method to show the list
                 showList();
+                currentpage++;
             }
 
             @Override
             public void failure(RetrofitError error) {
                 error.printStackTrace();
+                webserviceflag=false;
                 loading.dismiss();
             }
         });
@@ -91,14 +106,37 @@ public class MainActivity extends AppCompatActivity {
     //Our method to show list
     private void showList() {
 
-        adapter = new CustomAdapter(this);
         adapter.addAll(userList);
-        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User obj = adapter.getItem(position);
+                Intent i = new Intent(MainActivity.this, SecondActivity.class);
+                i.putExtra("Detail", obj);
+                startActivity(i);
+            }
+        });
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if ((listView.getLastVisiblePosition() == (adapter.getCount() - 1))&&webserviceflag==false){
+                    Toast.makeText(MainActivity.this,"vasu",Toast.LENGTH_LONG).show();
+                    getBooks();
+
+                }
+
+            }
+        });
         //Creating an array adapter for list view
-      //  ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.simple_list, items);
+        //  ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.simple_list, items);
 
         //Setting adapter to listview
-      //  listView.setAdapter(adapter);
+        //  listView.setAdapter(adapter);
     }
 
     @Override
