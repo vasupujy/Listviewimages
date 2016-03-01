@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:text="REPUTATION"
                 android:textColor="#d3d3d3"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:id="@+id/dot2s"
@@ -209,13 +209,6 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/account_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="jshd"
-        android:textSize="18sp" />
+
 
 </RelativeLayout>

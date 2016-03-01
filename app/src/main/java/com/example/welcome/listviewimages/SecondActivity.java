@@ -25,7 +25,7 @@ import java.util.TimeZone;
 public class SecondActivity extends AppCompatActivity {
     Toolbar toolbar2;
     ImageView thumb;
-    TextView txtuser,reputation, usertype, location, location2, location3, display_Add3, display_Add2, display_Add4, display_Add5;
+    TextView txtuser, reputation, usertype, location, location2, location3, display_Add3, display_Add2, display_Add4, display_Add5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class SecondActivity extends AppCompatActivity {
         location = (TextView) findViewById(R.id.location);
         location2 = (TextView) findViewById(R.id.location2);
         location3 = (TextView) findViewById(R.id.location1);
-        reputation = (TextView)findViewById(R.id.locations);
+        reputation = (TextView) findViewById(R.id.locations);
         display_Add3 = (TextView) findViewById(R.id.display_Add3);
         display_Add2 = (TextView) findViewById(R.id.display_Add2);
         display_Add5 = (TextView) findViewById(R.id.display_Add5);
@@ -54,42 +54,36 @@ public class SecondActivity extends AppCompatActivity {
         location3.setText(user.getBadge_counts().getBronze());
         reputation.setText(String.valueOf(user.getReputation()));
         Picasso.with(SecondActivity.this).load(user.getProfile_image()).into(th);
-        Calendar calendar = Calendar.getInstance();
 
-        calendar.setTimeInMillis(user.getCreation_date());
         Calendar mydate = Calendar.getInstance();
-        Calendar lastdate = Calendar.getInstance();
-        mydate.setTimeInMillis(user.getCreation_date() * 1000);
-        lastdate.setTimeInMillis(user.getLast_access_date()*1000);
+        mydate.setTimeInMillis(System.currentTimeMillis() - user.getCreation_date() * 1000);
+        long year = mydate.get(Calendar.YEAR) - 1970;
+        long month = mydate.get(Calendar.MONTH);
+        int mDay = mydate.get(Calendar.DAY_OF_MONTH) - 1;
+        display_Add3.setText("Member for" + " " + year + " Year" + ", " + month + " Month, " + mDay + " Day");
 
-      long year = mydate.get(Calendar.YEAR);
-        long month =mydate.get(Calendar.MONTH);
 
+        Calendar currentCal = Calendar.getInstance(TimeZone.getDefault());
+        currentCal.setTimeInMillis(System.currentTimeMillis()-user.getLast_access_date()*1000);
+        long cYear = currentCal.get(Calendar.YEAR)-1970;
+        long cHour = currentCal.get(Calendar.HOUR_OF_DAY);
+        long cMin = currentCal.get(Calendar.MINUTE);
+        long cMonth = currentCal.get(Calendar.MONTH);
+        long cDay = currentCal.get(Calendar.DAY_OF_MONTH);
+        display_Add5.setText("Last seen "+" " + cMin +" "+ "mins ago");
+     /*   Calendar lastdate = Calendar.getInstance();
+        lastdate.setTimeInMillis(user.getLast_access_date() * 1000);
         long yearl = lastdate.get(Calendar.YEAR);
-        long monthl =lastdate.get(Calendar.MONTH);
+        long monthl = lastdate.get(Calendar.MONTH);
         long hourl = lastdate.get(Calendar.HOUR_OF_DAY);
-        Calendar calendar1 = Calendar.getInstance(TimeZone.getDefault());
-
-        long cYear=calendar1.get(Calendar.YEAR);
-        long cHour = calendar1.get(Calendar.HOUR_OF_DAY);
-
-
-       long cMonth= calendar1.get(Calendar.MONTH);
-        long cDay=calendar1.get(Calendar.DAY_OF_MONTH);
-      long diffyear = cYear-year;
-
-        long diffmonth = cMonth-month;
-        long lsyear = cYear-yearl;
-        long lsmonth = cMonth-monthl;
-        long diffhour = cHour-hourl;
-        display_Add3.setText("Member for"+""+diffyear+"Year"+","+diffmonth+"Month");
-        display_Add5.setText("Last seen "+diffhour+"Hour ago");
-       // display_Add3.setText(cr);*/
+        long lsyear = cYear - yearl;
+        long lsmonth = cMonth - monthl;
+        long diffhour = cHour - hourl;*/
+      //  display_Add5.setText("Last seen " + diffhour + "Hour ago");
+        // display_Add3.setText(cr);*/
 
 
-
-
-     //   Read more: http://javarevisited.blogspot.com/2012/12/how-to-convert-millisecond-to-date-in-java-example.html#ixzz41cocPC8K
+        //   Read more: http://javarevisited.blogspot.com/2012/12/how-to-convert-millisecond-to-date-in-java-example.html#ixzz41cocPC8K
         //   display_Add4.setText(user.getWebsite_url());
         if (user.getWebsite_url().equals("") || user.getWebsite_url().equals(null)) {
             display_Add4.setVisibility(View.GONE);
