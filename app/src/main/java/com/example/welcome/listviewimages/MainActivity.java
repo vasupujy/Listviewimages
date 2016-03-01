@@ -125,7 +125,7 @@ int currentpage=1;
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if ((listView.getLastVisiblePosition() == (adapter.getCount() - 1))&&webserviceflag==false){
-                    Toast.makeText(MainActivity.this,"vasu",Toast.LENGTH_LONG).show();
+                   // Toast.makeText(MainActivity.this,"vasu",Toast.LENGTH_LONG).show();
                     getBooks();
 
                 }

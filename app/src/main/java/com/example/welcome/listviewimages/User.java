@@ -7,17 +7,18 @@ import java.io.Serializable;
 /**
  * Created by welcome on 25-02-2016.
  */
-public class User implements Serializable{//Variables that are in our json
+public class User implements Serializable {//Variables that are in our json
     private String profile_image;
     private String display_name;
     private int age;
     private Badge badge_counts;
     private String location;
-    private String reputation;
+  //  private String reputation;
     private long creation_date;
     private long last_access_date;
+    private long reputation;
     private String website_url;
-
+    private String user_id;
 
 
     public String getProfile_image() {
@@ -52,11 +53,11 @@ public class User implements Serializable{//Variables that are in our json
         this.location = location;
     }
 
-    public String getReputation() {
+    public long getReputation() {
         return reputation;
     }
 
-    public void setReputation(String reputation) {
+    public void setReputation(long reputation) {
         this.reputation = reputation;
     }
 

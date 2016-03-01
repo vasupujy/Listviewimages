@@ -67,13 +67,13 @@
                 android:id="@+id/dots"
                 android:layout_width="6dp"
                 android:layout_height="6dp"
-                android:background="@drawable/gold" />
+               />
 
             <TextView
                 android:id="@+id/locations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="18000"
+                android:text=""
                 android:textSize="18sp" />
 
             <RelativeLayout
@@ -81,13 +81,13 @@
                 android:layout_width="6dp"
                 android:layout_height="6dp"
                 android:layout_marginLeft="7dp"
-                android:background="@drawable/silver" />
+                />
 
             <TextView
                 android:id="@+id/location1s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="asd"
+                android:text="REPUTATION"
                 android:textColor="#d3d3d3"
                 android:textSize="18sp" />
 
@@ -96,7 +96,7 @@
                 android:layout_width="6dp"
                 android:layout_height="6dp"
                 android:layout_marginLeft="7dp"
-                android:background="@drawable/circle" />
+               />
 
         </LinearLayout>
 
@@ -113,7 +113,7 @@
                 android:id="@+id/dot"
                 android:layout_width="6dp"
                 android:layout_height="6dp"
-                android:background="@drawable/gold" />
+               />
 
             <TextView
                 android:id="@+id/location"
@@ -128,7 +128,7 @@
                 android:layout_width="6dp"
                 android:layout_height="6dp"
                 android:layout_marginLeft="7dp"
-                android:background="@drawable/silver" />
+               />
 
             <TextView
                 android:id="@+id/location1"
@@ -143,7 +143,7 @@
                 android:layout_width="6dp"
                 android:layout_height="6dp"
                 android:layout_marginLeft="7dp"
-                android:background="@drawable/circle" />
+                />
 
             <TextView
                 android:id="@+id/location2"
